@@ -16,3 +16,4 @@ Bob is the author of a useful library that he wants to write a Nix build for, fo
 3. **Poor multi-language support**: There's barely any support for building packages using multiple languages in a single derivation.
 4. **Poor errors**: When making a mistake during packaging, it's easy to get either no error message at all, or a very poor one. E.g. when a hash doesn't match, when a dependency is missing, when an argument was given the wrong type, when escaping of attributes is not right.
 5. **NixOS inconsistencies**: Declaring NixOS systems is entirely different from declaring packages, therefore requiring users to learn both ways.
+6. **Lack of compositionality**: Language builders are mostly implemented as functions that wrap `mkDerivation`, such as `buildPythonPackage` or `buildRustPackage`. This makes it impossible to combine such functions. By contrast, any number of setup hooks can be combined.
