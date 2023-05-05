@@ -24,7 +24,7 @@ Scenario 1: Adding a patch to a package
 Alice wants to apply a patch to the examplePackage from Nixpkgs to fix a bug that affects her system. She needs a simple way to add the patch to the package definition without having to modify the entire package.
 
 Scenario 2: Changing a build flag
-Bob wants to build examplePackage with a specific feature flag enabled. He should be able to modify the package definition to enable the feature without affecting other users or requiring an entirely new package definition.
+Bob wants to build examplePackage with a specific feature flag enabled. He should be able to modify the package definition to enable the feature without affecting other packages or requiring an entirely new package definition.
 
 Scenario 3: Updating a package dependency
 Carol wants to update a dependency of examplePackage to a newer version that is not yet available in Nixpkgs. She needs a way to specify the new dependency version in the package definition without having to rewrite the entire package.
