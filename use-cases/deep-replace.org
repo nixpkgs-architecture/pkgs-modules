@@ -1,6 +1,6 @@
 #+TITLE: Deeply Replacing Packages in Nixpkgs
 
-* Goal
+* General Information
 
 Replace all "instances" of a package across a dependency graph.
 This may be replacing all usage in a package set, collection of package sets,
@@ -11,14 +11,13 @@ fix provided by a new release of a piece of software is used "everywhere" in
 the dependency graph.
 
 
-** Approach without Nixpkgs Modules
+* Concrete Examples
 
 While the precise organization of packages will effect the complexity and
 effort required to perform _deep replacement_, in general we say that this
 is accomplished using helper functions such as =callPackageWith=,
 =makeScope=, =override=, or =extend=.
 
-#+NAME: Trivial Example ( Single Package Set, Shallow Replacement )
 #+BEGIN_SRC nix
 let
   nixpkgs  = builtins.getFlake "nixpkgs";
@@ -26,33 +25,8 @@ let
   patchFoo = final: prev: { foo = final.callPackage ./my-pkgs/foo {}; };
 in ( pkgsFor.extend patchFoo ).bar
 #+END_SRC
-
-
-#+NAME: Deep Replacement Example ( Single Package Set )
-#+BEGIN_SRC nix
-let
-  nixpkgs  = builtins.getFlake "nixpkgs";
-  pkgsFor  = builtins.getAttr builtins.currentSystem nixpkgs.legacyPackages;
-  patchFoo = final: prev: { foo = final.callPackage ./my-pkgs/foo {}; };
-in ( pkgsFor.extend patchFoo ).bar
-#+END_SRC
-
-
-** Approach with Nixpkgs Modules
-
-
-* Concrete Examples
-
-** Approach without Nixpkgs Modules
-
-
-** Approach with Nixpkgs Modules
-
 
 * Current Problems
-
-
-** Approach without Nixpkgs Modules
 
 With this approach we have three main sources of complexity, none of which
 truly prevent a user from accomplishing their goal; but we might suffice to
@@ -60,8 +34,10 @@ say that it may be worthwhile to provide a more straightforward mechanism
 for handling this use case.
 
 1. [[https://github.com/NixOS/nixpkgs/blob/master/lib/customization.nix][github:NixOS/nixpkgs://lib/customization.nix]] routines aren't intuitively understood by many users.
+
 2. Nested scopes are difficult to locate, and the relationship between
    parent scopes and child scopes is not opaque to users.
+
 3. With ad-hoc recipes and flakes there isn't standardized usage of
    =overlays= that allow deep overriding of packages transitively.
    - Improved guidance on the use of =overlays= and =follows= in =flakes=
