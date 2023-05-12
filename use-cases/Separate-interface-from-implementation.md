@@ -17,12 +17,13 @@ Carl wants to build a python project with dependencies. Some of the dependencies
 
 ## Current problems
 
-**Non-composable implementations**: Different implementations like the one from nixpkgs and out of tree packaging libraries (eg. lang2nix) are often incompatible. They often cannot be easily combined and there is a lock-in to a certain tool. For example if poetry2nix is used for python, the user cannot simply inherit all the well maintained build logic from nixpkgs. The logic from nixpkgs has to be duplicated either manually or by the community of poetry2nix.
+**Non-composable implementations**: Different implementations like the one from nixpkgs and out of tree packaging libraries (eg. lang2nix) are often incompatible. They often cannot be easily combined and there is a lock-in to a certain tool. For example, if poetry2nix is used for python, the user cannot simply inherit all the well-maintained build logic from nixpkgs. The logic from nixpkgs has to be duplicated either manually or by the community of poetry2nix.
 
-**Mental overhead by too many interfaces**: Not having a standard interface results in may tools having many different interfaces. That introduces mental overhead and steepens the learning curve of nix more than it already is. It makes it hard to switch from one toll to another. Often complex ad-hoc hacks have to be used to circumvent the limitations of a single tool just becaus switching the implementation for a single package is not feasible.
+**Mental overhead by too many interfaces**: Not having a standard interface results in many tools having different interfaces. That introduces mental overhead and steepens the learning curve of Nix more than it already is. It makes it hard to switch from one tool to another. Often complex ad-hoc hacks have to be used to circumvent the limitations of a single tool just because switching the implementation for a single package is not feasible.
 
-**Fragile out-of-tree implementations**: Out of tree packaging implementations can be fragile if those try to re-use code from nixpkgs, as it is never clear what the actual API is and also the API can change at any time resulting in breakages.
+**Fragile out-of-tree implementations**: Out-of-tree packaging implementations can be fragile if they try to re-use code from nixpkgs, as it is never clear what the actual API is and also the API can change at any time, resulting in breakages
 
-**Complexity of out-of-tree implementations**: Out of tree packaging implementations often have to introduce extra complexity when they re-use code from other implementations. Due to the lack of an official API, they require workarounds to mitigate breakages or to establish compatibility to multiple versions of nixpkgs.
+**Complexity of out-of-tree implementations**: Out-of-tree packaging implementations often have to introduce extra complexity when they re-use code from other implementations. Due to the lack of an official API, they require workarounds to mitigate breakages or to establish compatibility with multiple versions of nixpkgs.
 
-**Conflicts, collisions, infinite recursions**: When manipulating dependency trees of existing package sets, it's easy to run into conflicts, collisions, or hard to debug infinite recursions because there is no well thought out interface to manipulate dependency trees safely.
+**Conflicts, collisions, infinite recursions**: When manipulating dependency trees of existing package sets, it's easy to run into conflicts, collisions, or hard-to-debug infinite recursions because there is no well-thought-out interface to manipulate dependency trees safely.
+
