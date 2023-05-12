@@ -46,10 +46,10 @@ for handling this use case.
 
 1. [github:NixOS/nixpkgs://lib/customisation.nix](https://github.com/NixOS/nixpkgs/blob/master/lib/customisation.nix)
 routines aren't intuitively understood by many users.
-  - `self`/`super` and `final`/`prev` are difficult for new users to understand.
-  - Easy to accidentally trigger infinite recursion.
-  - Some packages are not _truly_ overridable, which advanced users will only
-    discover after a lengthy debugging session.
+   - `self`/`super` and `final`/`prev` are difficult for new users to understand.
+   - Easy to accidentally trigger infinite recursion.
+   - Some packages are not _truly_ overridable, which advanced users will only
+     discover after a lengthy debugging session.
 
 2. Nested scopes are difficult to locate, and the relationship between
    parent scopes and child scopes is not opaque to users.
