@@ -25,7 +25,7 @@ pkgs.extend ( final: prev: { foo = final.callPackage ./my-pkgs/foo {}; } )
 ```
 
 
-### Nested Overlay
+### Nested Overlays
 
 This fails to use Node.js v14 in `nodePackages`, which is unexpected to
 most users.
@@ -68,7 +68,7 @@ routines aren't intuitively understood by many users.
 
 2. Nested scopes are difficult to locate, and the relationship between
    parent scopes and child scopes is not opaque to users.
-   - See [Nested Overlays](Nested Overlays) example.
+   - See [Nested Overlays](Nested-Overlays) example.
 
 3. With ad-hoc recipes and flakes there isn't standardized usage of
    `overlays` that allow deep overriding of packages transitively.
