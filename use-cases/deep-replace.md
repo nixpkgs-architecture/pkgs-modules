@@ -27,7 +27,10 @@ pkgs.extend ( final: prev: { foo = final.callPackage ./my-pkgs/foo {}; } )
 
 ### Nested Overlay
 
+This fails to use Node.js v14 in `nodePackages`, which is unexpected to
+most users.
 ```nix
+# XXX: Incorrect usage
 pkgs.extend ( final: prev: {
   nodejs       = prev.nodejs-14_x;
   nodePackages = prev.nodePackages.extend ( nfinal: nprev: {
@@ -35,6 +38,18 @@ pkgs.extend ( final: prev: {
   } );
 } )
 ```
+
+To accomplish use Node.js v14 here the user would need two overlays.
+```nix
+let
+  pkgsN14 = pkgs.extend ( final: prev: { nodejs = prev.nodejs-14_x; } );
+in pkgsN14.extend ( final: prev: {
+  nodePackages = prev.nodePackages.extend ( nfinal: nprev: {
+    bar = nfinal.callPackage ./my-pkgs/bar {};
+  } );
+} )
+```
+
 
 
 ## Current Problems
