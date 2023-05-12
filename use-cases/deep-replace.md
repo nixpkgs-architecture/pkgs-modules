@@ -19,6 +19,7 @@ is accomplished using helper functions such as `extend`, `overrideScope'`, and
 `appendOverlays`, as well as the configuration field `overlays`.
 
 ### Simple Overlay
+
 ```nix
 pkgs.extend ( final: prev: { foo = final.callPackage ./my-pkgs/foo {}; } )
 ```
