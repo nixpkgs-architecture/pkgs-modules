@@ -37,4 +37,4 @@ Carol wants to update a dependency of examplePackage to a newer version that is 
 4. **Manual merging of previous values**: When customizing a package, users must manually merge previous values, such as patches or dependencies. This can make customizations more verbose and repetitive than necessary.
 5. **Order-dependent customizations**: Customizations are often order-dependent, meaning that changing the order of overlays or patches can result in unexpected behavior or errors.
 6. **Performance impact**: Customizing packages can sometimes lead to a performance impact, as package sets and packages are evaluated for each subsequent overlay or customization.
-
+7. **Lack of implementation hiding**: Every part of the implementation of a package can be customized via overrideDerivation etc. That's a powerful feature, but it does mean that any change to the implementation of a package can break downstream users.
