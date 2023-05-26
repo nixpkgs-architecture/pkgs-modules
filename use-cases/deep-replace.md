@@ -56,7 +56,7 @@ in pkgsN14.extend ( final: prev: {
 ## Current Problems
 
 With this approach we have three main sources of complexity, none of which
-truly prevent a user from accomplishing their goal; but we might suffice to
+truly prevent a user from accomplishing their goal, but we might suffice to
 say that it may be worthwhile to provide a more straightforward mechanism
 for handling this use case.
 
