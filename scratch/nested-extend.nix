@@ -129,7 +129,7 @@ in {
     inherit n20Overlay n18Overlay myOverlay friendOverlay;
   };
   util = {
-    inherit chainOverlays extractNodeVersions showNodeVersions;
+    inherit chainOverlays composeOverlays extractNodeVersions showNodeVersions;
   };
 
   show = str: builtins.trace ( "\n" + str ) null;
