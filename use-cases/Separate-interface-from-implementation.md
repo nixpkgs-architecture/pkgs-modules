@@ -17,7 +17,7 @@ Carl wants to build a python project with dependencies. Some of the dependencies
 
 ## Current problems
 
-**Non-composable implementations**: Different implementations like the one from nixpkgs and out of tree packaging libraries (eg. lang2nix) are often incompatible. They often cannot be easily combined and there is a lock-in to a certain tool. For example, if poetry2nix is used for python, the user cannot simply inherit all the well-maintained build logic from nixpkgs. The logic from nixpkgs has to be duplicated either manually or by the community of poetry2nix.
+**Non-composable implementations**: Different implementations like the one from nixpkgs and out of tree packaging libraries (eg. lang2nix) are often incompatible. They often cannot be easily combined and there is a lock-in to a certain tool. For example, if poetry2nix is used for python, the user cannot simply inherit all the well-maintained build logic from nixpkgs. The logic from nixpkgs has to be duplicated manually, by individual users or the tools community.
 
 **Mental overhead by too many interfaces**: Not having a standard interface results in many tools having different interfaces. That introduces mental overhead and steepens the learning curve of Nix more than it already is. It makes it hard to switch from one tool to another. Often complex ad-hoc hacks have to be used to circumvent the limitations of a single tool just because switching the implementation for a single package is not feasible.
 
