@@ -4,6 +4,9 @@
 
 The interface and implementation of package definitions should be separated to ensure better maintainability, flexibility, and compatibility between different tools and approaches. A well-defined interface would allow package maintainers to focus on the implementation details while providing stability and consistency for end-users. It would also enable out-of-tree packaging libraries to interoperate with Nixpkgs more effectively, reducing the need for duplicated efforts and custom workarounds.
 
+While having clear interfaces is obviously good for maintainability, it is also a pretty powerful feature of Nixpkgs to allow things being overridden in a hacky way, e.g. through .overrideDerivation. We might not want to disallow such mechanisms entirely, since they're often the most convenient way to do local overrides. The alternative would be having to clone the package expression.
+Therefore we may want to still provide hacky override mechanisms like .overrideDerivation, as long as it's clear to users that such mechanisms don't come with any interface stability guarantees.
+
 ## Concrete examples
 
 Scenario 1: Out of tree implementations (eg. lang2nix)
