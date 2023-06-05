@@ -15,6 +15,8 @@ Bob is a maintainer of the python framework in nixpkgs. He makes an improvement 
 Scenario 3: Mixing different implementations
 Carl wants to build a python project with dependencies. Some of the dependencies are defined by a lock file and are not available from nixpkgs. Carl would like to build some of the packages using poetry2nix while mixing in other existing package from nixpkgs seamlessly.
 
+Scenario 4: Upgrading a package
+Dave does some refactoring to the Emacs Nix expression in Nixpkgs, but it's reverted because it breaks things for some users who were doing some `.override*` on Emacs. Dave would like to know what parts of the Emacs Nix expression should be considered an "interface".
 ## Current problems
 
 **Non-composable implementations**: Different implementations like the one from nixpkgs and out of tree packaging libraries (eg. lang2nix) are often incompatible. They often cannot be easily combined and there is a lock-in to a certain tool. For example, if poetry2nix is used for python, the user cannot simply inherit all the well-maintained build logic from nixpkgs. The logic from nixpkgs has to be duplicated manually, by individual users or the tools community.
