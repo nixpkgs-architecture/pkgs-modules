@@ -17,9 +17,13 @@ Carl wants to build a python project with dependencies. Some of the dependencies
 
 Scenario 4: Upgrading a package
 Dave does some refactoring to the Emacs Nix expression in Nixpkgs, but it's reverted because it breaks things for some users who were doing some `.override*` on Emacs. Dave would like to know what parts of the Emacs Nix expression should be considered an "interface".
+
 ## Current problems
 
-**Non-composable implementations**: Different implementations like the one from nixpkgs and out of tree packaging libraries (eg. lang2nix) are often incompatible. They often cannot be easily combined and there is a lock-in to a certain tool. For example, if poetry2nix is used for python, the user cannot simply inherit all the well-maintained build logic from nixpkgs. The logic from nixpkgs has to be duplicated manually, by individual users or the tools community.
+**Non-compatible implementations**:
+The absence of well-defined interfaces makes it harder for framework maintainers to keep their implementations compatible.
+For example, community overrides written for one lang2nix tool cannot be re-used for another one due to differences in their interfaces.
+While having well defined interfaces isn't a guarantee for compatibility, it can make it simpler to achieve it.
 
 **Mental overhead by too many interfaces**: Not having a standard interface results in many tools having different interfaces. That introduces mental overhead and steepens the learning curve of Nix more than it already is. It makes it hard to switch from one tool to another. Often complex ad-hoc hacks have to be used to circumvent the limitations of a single tool just because switching the implementation for a single package is not feasible.
 
