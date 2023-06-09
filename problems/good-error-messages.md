@@ -4,7 +4,7 @@
 
 Good error messages are crucial to the debugging process. They can provide the user with clear and concise information about what went wrong, why it went wrong, and possibly how to fix it. In the context of Nix packages, good error messages can be invaluable for both package developers and end users. They are especially important for beginners who may not yet be familiar with the intricacies of Nixpkgs and the Nix language.
 
-The quality of error messages can significantly affect the user experience. For instance, if a package fails to build due to a missing dependency, the error message should clearly identify the missing dependency and where it's expected. When a package fails due to an incorrect configuration, the error message should indicate the problem with the configuration and ideally suggest a correct configuration.
+The quality of error messages can significantly affect the user experience. When a package fails due to an incorrect configuration, the error message should indicate the problem with the configuration and ideally suggest a correct configuration.
 
 ## Concrete Example
 
