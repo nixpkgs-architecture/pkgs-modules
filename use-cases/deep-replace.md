@@ -114,7 +114,7 @@ routines aren't intuitively understood by many users.
      discover after a lengthy debugging session.
 
 2. Nested scopes are difficult to locate, and the relationship between
-   parent scopes and child scopes is not opaque to users.
+   parent scopes and child scopes is opaque to users.
    - See [Nested Overlays](#Nested-Ex) example.
 
 3. With ad-hoc recipes and flakes there isn't standardized usage of
