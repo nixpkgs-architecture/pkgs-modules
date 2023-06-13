@@ -28,29 +28,75 @@ pkgs.extend ( final: prev: { foo = final.callPackage ./my-pkgs/foo {}; } )
 <a name="Nested-Ex"></a>
 ### Nested Overlays
 
-This fails to use Node.js v14 in `nodePackages`, which is unexpected to
-most users.
+Nested overlays and "chained" vs. "composed" overlays, as well as when `prev`
+and `final` should be used is a common source of confusion.
+This can be particularly problematic when consuming overlays defined externally.
+
+There is an extended example [here](../scratch/nested-extend.nix) that shows a
+variety of common pitfalls, but the snippet below shows an abbreviated case.
+Here the use of `nodejs` is contrived, what's important is that `nodejs` is
+used to populate a nested scope `nodePackages`.
+For the purposes of this example, we'll imagine the user is unaware of how
+`nodePackages<VERSION>` attrsets should be used and naively use `nodePackages`
+to add their own package definitions.
+The core of this issue is that we attempt to merge an external overlay which
+uses `nodejs@18` with an overlay using `nodejs@20`.
+The user's goal here is really to use `nodejs@20` for the packages they define
+and for their dependencies, but doing so inadvertently modifies executables
+defined in our external overlay.
+
+External Flake:
 ```nix
-# XXX: Incorrect usage
-pkgs.extend ( final: prev: {
-  nodejs       = prev.nodejs-14_x;
-  nodePackages = prev.nodePackages.extend ( nfinal: nprev: {
-    bar = nfinal.callPackage ./my-pkgs/bar {};
-  } );
-} )
+{
+  outputs = { nixpkgs, ... }: let
+    # We must split these into two overlays so `prev` holds the correct `nodejs`
+    overlays.node18 = final: prev: { nodejs = prev.nodejs-18_x; };
+    overlays.theirPkgs = final: prev: {
+      nodePackages = prev.nodePackages.extend ( nfinal: nprev: {
+        # Requires `nodejs@18' to avoid runtime errors.
+        someExecutable = nfinal.callPackage ./. {};
+      } );
+    };
+    overlays.default =
+      nixpkgs.lib.composeExtensions overlays.node18 overlays.theirPkgs;
+  in { inherit overlays; }
+}
 ```
 
-To accomplish use Node.js v14 here the user would need two overlays.
-```nix
-let
-  pkgsN14 = pkgs.extend ( final: prev: { nodejs = prev.nodejs-14_x; } );
-in pkgsN14.extend ( final: prev: {
-  nodePackages = prev.nodePackages.extend ( nfinal: nprev: {
-    bar = nfinal.callPackage ./my-pkgs/bar {};
-  } );
-} )
+Our Flake:
+```
+{
+  outputs = { nixpkgs, other, ... }: let
+    overlays.deps   = other.overlays.default;
+    overlays.node20 = final: prev: { nodejs = prev.nodejs-20_x; };
+    overlays.myPkgs = final: prev: {
+      nodePackages = prev.nodePackages.extend ( nfinal: nprev: {
+        # Doesn't use any node modules from previous overlay, but requires
+        # `nodejs@20' to avoid runtime errors.
+        myModule = nfinal.callPackage ./module {};
+      } );
+      # Uses `someExecutable' from previous overlay.
+      someTool = final.callPackage ./tool {};
+    };
+    overlays.default = nixpkgs.lib.composeManyExtensions [
+      overlays.deps overlays.node20 overlays.myPkgs
+    ];
+  in {
+    inherit overlays;
+    packages.x86_64-linux = let
+      pkgsFor = nixpkgs.legacyPackages.x86_64-linux.extend overlays.default;
+    in { inherit (pkgsFor) nodePackages someTool; }
+    # packages.<SYSTEM> = ...;
+  }
+}
 ```
 
+In this example the user will encounter runtime crashes in `myTool` caused by
+accidentally overriding `nodejs = nodejs-20_x;`
+in `nodePackages.someExecutable` defined externally.
+While we certainly have ways to avoid this category of issue, the process seen
+above is already a challenge to understand - ideally a more intuitive pattern
+could be offered to users.
 
 
 ## Current Problems
