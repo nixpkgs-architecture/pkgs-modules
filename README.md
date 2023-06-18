@@ -29,16 +29,6 @@ Notes and/or recordings of past meetings, in reverse chronological order:
 - [2023-05-05](./meetings/2023-05-05.md)
 - [2023-04-28](./meetings/2023-04-28.md)
 
-## Members
-
-Current working group members, in alphabetical order:
-
- - @DavHau
- - @edolstra
- - @growpotkin
- - @infinisil
- - @phaer
-
 ## Milestones
 
 - 1. [ ] Document and understand the [problems](./problems/) and use cases
@@ -57,3 +47,14 @@ Current working group members, in alphabetical order:
 [yt-drv-parts]: https://youtu.be/AsCvRZukX0E
 [module-system]: https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules
 [discourse-thread]: https://discourse.nixos.org/t/working-group-member-search-module-system-for-packages/26574
+
+## Members
+
+Current working group members, in alphabetical order:
+
+ - @DavHau
+ - @edolstra
+ - @growpotkin
+ - @infinisil
+ - @phaer
+
