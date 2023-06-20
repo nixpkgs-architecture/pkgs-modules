@@ -12,22 +12,8 @@ end goal is to have an [RFC](./rfc.md) developed that can be proposed. Using
 
 We meet **weekly, every Friday at 13:00 UTC** in [this Jitsi][wg-jitsi].
 
-Notes are written live in [this pad][wg-pad] during meetings, and collected
-below afterwards. Presentations are streamed via YouTube, with recordings available on
-[Youtube: @nixpkgs-architecture][yt-nixpkgs-architecture].
-
-### Past Meetings
-
-Notes and/or recordings of past meetings, in reverse chronological order: 
-
-- [2023-06-16: drv-parts presentation (YouTube)][yt-drv-parts]
-- [2023-06-09](./meetings/2023-06-09.md)
-- [2023-06-02](./meetings/2023-06-02.md)
-- [2023-05-26](./meetings/2023-05-26.md)
-- [2023-05-19](./meetings/2023-05-19.md)
-- [2023-05-12](./meetings/2023-05-12.md)
-- [2023-05-05](./meetings/2023-05-05.md)
-- [2023-04-28](./meetings/2023-04-28.md)
+Notes are written live in [this pad][wg-pad] during meetings, and committed to the [./meetings](./meetings) folder afterwards.
+Occasional presentations are streamed and recorded to [this YouTube playlist](https://www.youtube.com/playlist?list=PLHG2N-mfvWT48ZGoUC5W6OMMdln0IsNrq) on the Nixpkgs Architecture Team channel.
 
 ## Milestones
 
@@ -43,8 +29,6 @@ Notes and/or recordings of past meetings, in reverse chronological order:
 [wg-pulls]: https://github.com/nixpkgs-architecture/pkgs-modules/pulls
 [wg-jitsi]: https://meet.jit.si/wg-pkgs-modules
 [wg-pad]: https://pad.lassul.us/6k3p0UBvT-6z-w9Bsy_BIg#
-[yt-nixpkgs-architecture]: https://www.youtube.com/channel/UC_BFweJOiukTHdKCr1P0kRQ
-[yt-drv-parts]: https://youtu.be/AsCvRZukX0E
 [module-system]: https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules
 [discourse-thread]: https://discourse.nixos.org/t/working-group-member-search-module-system-for-packages/26574
 
