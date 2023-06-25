@@ -28,8 +28,8 @@ pkgs.extend ( final: prev: { foo = final.callPackage ./my-pkgs/foo {}; } )
 <a name="Nested-Ex"></a>
 ### Nested Overlays
 
-Nested overlays and "chained" vs. "composed" overlays, as well as when `prev`
-and `final` should be used is a common source of confusion.
+Nested overlays, "chained" vs. "composed" overlays, as and when to use `prev`
+and `final` are common sources of confusion.
 This can be particularly problematic when consuming overlays defined externally.
 
 There is an extended example [here](../scratch/nested-extend.nix) that shows a
